@@ -1,5 +1,6 @@
 package nam.tran.exercise1;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Student {
@@ -15,8 +16,24 @@ public class Student {
         this.courseName = courseName;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getCourseName() {
+        return courseName;
     }
 
     public String getId() {
@@ -25,6 +42,19 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("%-3s | %-3d | %-3s", this.name, semester, courseName);
+        return String.format("%-5s | %-5d | %-5s", this.name, semester, courseName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
