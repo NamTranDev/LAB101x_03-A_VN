@@ -1,5 +1,6 @@
 package nam.tran.exercise2;
 
+import nam.tran.Utils;
 import nam.tran.exercise1.Student;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class ManagerCandidate {
                 }
             }
             System.out.println("Nhập địa chỉ ứng viên:");
-            String address = scanner.next();
+            String address = Utils.inputLine(scanner);
             String phone;
             while (true) {
                 String regex = "[0-9]+";
@@ -113,7 +114,7 @@ public class ManagerCandidate {
                         }
                     }
                     System.out.println("Nhập kỹ năng chuyên môn của ứng viên:");
-                    String proSkill = scanner.next();
+                    String proSkill = Utils.inputLine(scanner);
                     experienceCandidates.add(new ExperienceCandidate(id, firstName, lastName, birthYear, address, phone, email, yearExperience, proSkill));
                     break;
                 }
@@ -122,24 +123,24 @@ public class ManagerCandidate {
                     String graduationDate = scanner.next();
                     String graduationRank = inputGraduationRank(scanner);
                     System.out.println("Nhập trường đại học ứng viên đã tốt nghiệp:");
-                    String education = scanner.next();
+                    String education = Utils.inputLine(scanner);
                     fresherCandidates.add(new FresherCandidate(id, firstName, lastName, birthYear, address, phone, email, graduationDate, graduationRank, education));
                     break;
                 }
                 case 3: {
                     System.out.println("Nhập chuyên ngành của ứng viên:");
-                    String major = scanner.next();
+                    String major = Utils.inputLine(scanner);
                     System.out.println("Nhập học kỳ của ứng viên:");
-                    String semester = scanner.next();
+                    String semester = Utils.inputLine(scanner);
                     System.out.println("Nhập tên trường đại học của ứng viên:");
-                    String nameUniversity = scanner.next();
+                    String nameUniversity = Utils.inputLine(scanner);
                     internCandidates.add(new InternCandidate(id, firstName, lastName, birthYear, address, phone, email, major, semester, nameUniversity));
                     break;
                 }
             }
             System.out.println("Bạn có muốn tiếp tục (Y/N):");
             String answer = scanner.next();
-            if (answer.toLowerCase().equals("n")) {
+            if (answer.equalsIgnoreCase("n")) {
                 displayCandidate();
                 break;
             }
@@ -150,7 +151,7 @@ public class ManagerCandidate {
         System.out.println("Danh sách ứng viên:");
         displayCandidate();
         System.out.println("Nhập tên ứng viên (Họ hoặc Tên):");
-        String name = scanner.next();
+        String name = Utils.inputLine(scanner);
         System.out.println("Nhập loại ứng viên:");
         int type;
         while (true) {
@@ -223,7 +224,7 @@ public class ManagerCandidate {
     }
 
     private String inputGraduationRank(Scanner scanner) {
-        String[] graduationRanks = new String[3];
+        String[] graduationRanks = new String[4];
         graduationRanks[0] = "Xuất sắc";
         graduationRanks[1] = "Tốt";
         graduationRanks[2] = "Khá";
