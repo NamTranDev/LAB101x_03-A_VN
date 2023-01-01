@@ -19,6 +19,10 @@ public class Main {
         display(arr);
     }
 
+    /*
+     *   Thuật toán sắp xếp lựa chọn(Selection Sort) sắp xếp một mảng bằng cách liên tục tìm phần tử tối thiểu (xét
+     *   theo thứ tự tăng dần) từ phần không được sắp xếp và đặt nó ở đầu.
+     **/
     private static void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int min = i;

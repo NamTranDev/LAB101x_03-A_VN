@@ -19,6 +19,11 @@ public class Main {
         display(arr);
     }
 
+    /*
+     *   Xuất phát từ phần tử cuối danh sách ta tiến hành so sánh với phần tử bên trái của nó. Nếu phần tử đang xét có khóa nhỏ hơn
+     * phần tử bên trái của nó ta tiến đưa nó về bên trái của dãy bằng cách hoán vị với phần tử bên trái của nó. Tiếp tục thực hiện
+     *  như thế đối với bài toán có n phần tử thì sau n –1 bước ta thu được danh sách tăng dần.
+     **/
     private static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {

@@ -19,6 +19,11 @@ public class Main {
         display(arr);
     }
 
+    /*
+     *   Thuật toán sắp xếp chèn (Insertion Sort) thực hiện sắp xếp các phần tử theo cách duyệt từng phần tử. Và chèn
+     *   từng phần tử đó vào đúng vị trí trong mảng con. Phần tử được chuyền vào vị trí thích hợp sao cho mảng con vẫn
+     *   đảm bảo sắp xếp theo đúng thứ tự.
+     **/
     private static void insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int value = arr[i];
