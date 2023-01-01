@@ -59,7 +59,7 @@ public class ManagerFruit {
             String origin = Utils.inputLine(scanner);
 
             int quality = inputQuality(scanner, -1);
-            fruits.add(new Fruit(id, name, price, quality, origin.toString()));
+            fruits.add(new Fruit(id, name, price, quality, origin));
             System.out.println("Bạn có muốn nhập tiếp (Y/N) không?");
             String answer = scanner.next();
             if (answer.equalsIgnoreCase("n")) {
@@ -79,6 +79,8 @@ public class ManagerFruit {
                 }
                 if (quality > number) {
                     System.out.println("Bạn đang nhập số lượng lớn hơn hiện có!!!");
+                }else{
+                    return quality;
                 }
             } catch (Exception e) {
                 System.out.println("Vui lòng nhập số lượng trái cây!!!");
@@ -132,6 +134,7 @@ public class ManagerFruit {
                 System.out.println("Quý khách hàng vui lòng chọn mặt hàng:");
                 try {
                     position = Integer.parseInt(scanner.next());
+                    position = position - 1;
                     if (position > fruitUpdates.size() - 1 || position < 0) {
                         System.out.println("Chọn mặt hàng là số thứ tự ");
                     } else {
@@ -146,15 +149,14 @@ public class ManagerFruit {
             int quality = inputQuality(scanner, currentFruit.getQuantity());
             System.out.println("Bạn có muốn đặt hàng ngay bây giờ (Y/N):");
             String answer = scanner.next();
-            if (answer.equalsIgnoreCase("n")) {
-                int index = orderFruits.indexOf(currentFruit);
-                if (index != -1){
-                    Fruit fruitUpdate = orderFruits.get(index);
-                    fruitUpdate.setQuantity(fruitUpdate.getQuantity() + quality);
-                }else {
-                    orderFruits.add(new Fruit(currentFruit.getId(), currentFruit.getName(), currentFruit.getPrice(), quality, currentFruit.getOrigin()));
-                }
-            } else {
+            int index = orderFruits.indexOf(currentFruit);
+            if (index != -1){
+                Fruit fruitUpdate = orderFruits.get(index);
+                fruitUpdate.setQuantity(fruitUpdate.getQuantity() + quality);
+            }else {
+                orderFruits.add(new Fruit(currentFruit.getId(), currentFruit.getName(), currentFruit.getPrice(), quality, currentFruit.getOrigin()));
+            }
+            if (answer.equalsIgnoreCase("y")) {
                 displayOrder(orderFruits);
                 String nameClient;
                 while (true){
@@ -170,9 +172,9 @@ public class ManagerFruit {
                 }
                 for (int i = 0; i < fruits.size(); i++) {
                     Fruit fruit = fruits.get(i);
-                    int index = orderFruits.indexOf(fruit);
-                    if (index != -1) {
-                        Fruit fruitOrder = orderFruits.get(index);
+                    int indexItem = orderFruits.indexOf(fruit);
+                    if (indexItem != -1) {
+                        Fruit fruitOrder = orderFruits.get(indexItem);
                         fruit.setQuantity(fruit.getQuantity() - fruitOrder.getQuantity());
                         if (fruit.getQuantity() == 0){
                             fruits.remove(fruit);
